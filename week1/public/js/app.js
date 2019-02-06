@@ -62,6 +62,7 @@ Promise.all([chuckQuote, countryName, pokemonName]).then(function(data) {
   randomQuote(data[0]);
   randomCountry(data[1]);
   randomPokemon(data[2]);
+  console.log(data);
 });
 
 function randomQuote(data) {
@@ -78,4 +79,6 @@ function randomCountry(data) {
 function randomPokemon(data) {
   const pokemonName = (document.querySelector(".pokemon-name").innerHTML =
     data.name);
+  const pokemonImg = (document.querySelector(".pokemon-image").src =
+    data.sprites.front_default);
 }

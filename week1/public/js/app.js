@@ -1,3 +1,5 @@
+const randomNumber = Math.floor(Math.random() * 250 + 1);
+
 const chuckQuote = new Promise(function(resolve, reject) {
   const url = "https://api.chucknorris.io/jokes/random";
   const request = new XMLHttpRequest();
@@ -39,7 +41,7 @@ const countryName = new Promise(function(resolve, reject) {
 });
 
 const pokemonName = new Promise(function(resolve, reject) {
-  const url = "https://pokeapi.co/api/v2/pokemon/ditto/";
+  const url = "https://pokeapi.co/api/v2/pokemon/" + randomNumber;
   const request = new XMLHttpRequest();
 
   request.open("get", url, true);
@@ -62,7 +64,6 @@ Promise.all([chuckQuote, countryName, pokemonName]).then(function(data) {
   randomQuote(data[0]);
   randomCountry(data[1]);
   randomPokemon(data[2]);
-  console.log(data);
 });
 
 function randomQuote(data) {
@@ -71,9 +72,8 @@ function randomQuote(data) {
 }
 
 function randomCountry(data) {
-  const i = Math.floor(Math.random() * 250 + 1);
   const countryName = (document.querySelector(".country-name").innerHTML =
-    data[i].name);
+    data[randomNumber].name);
 }
 
 function randomPokemon(data) {

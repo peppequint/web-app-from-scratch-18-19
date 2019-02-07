@@ -83,18 +83,15 @@ header .wrap-search .button-search .pokeball {
   border-radius: 50%;
   height: 30px;
   margin: 0 auto;
-  overflow: hidden;
   position: relative;
   transition: 0.2s ease-in;
   width: 30px;
 }
 
-header .wrap-search .button-search:hover .pokeball {
-  transform: rotate(45deg);
-}
-
 header .wrap-search .button-search .pokeball::before {
   background-color: var(--color-red);
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
   content: "";
   height: 50%;
   left: 0;
@@ -110,7 +107,16 @@ header .wrap-search .button-search .pokeball::after {
   left: 0;
   position: absolute;
   top: 40%;
-  width: 100%;
+  transition: 0.2s ease-in;
+  width: 32px;
+}
+
+header .wrap-search .button-search:hover .pokeball {
+  transform: rotate(45deg);
+}
+
+header .wrap-search .button-search:hover .pokeball::after {
+  width: 42px;
 }
 
 main {

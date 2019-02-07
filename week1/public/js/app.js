@@ -62,22 +62,23 @@ const pokemonName = new Promise(function(resolve, reject) {
 
 Promise.all([chuckQuote, countryName, pokemonName]).then(function(data) {
   randomQuote(data[0]);
-  randomCountry(data[1]);
+  // randomCountry(data[1]);
   randomPokemon(data[2]);
 });
 
 function randomQuote(data) {
-  const quoteSentence = (document.querySelector(".chuck-quote").innerHTML =
-    "'" + data.value + "'");
+  const quoteSentence = (document.querySelector(
+    ".pokemon-sentence > h4"
+  ).innerHTML = "'" + data.value + "'");
 }
-
-function randomCountry(data) {
-  const countryName = (document.querySelector(".country-name").innerHTML =
-    data[randomNumber].name);
-}
+//
+// function randomCountry(data) {
+//   const countryName = (document.querySelector(".country-name").innerHTML =
+//     data[randomNumber].name);
+// }
 
 function randomPokemon(data) {
-  const pokemonName = (document.querySelector(".pokemon-name").innerHTML =
+  const pokemonName = (document.querySelector(".pokemon-name > h3").innerHTML =
     data.name);
   const pokemonImg = (document.querySelector(".pokemon-image").src =
     data.sprites.front_default);

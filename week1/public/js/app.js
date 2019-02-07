@@ -1,5 +1,12 @@
 const randomNumber = Math.floor(Math.random() * 250 + 1);
 
+// const buttonSearch = document.querySelector(".button-search");
+// const inputPokemonValue = document.querySelector(".pokemon-search");
+//
+// buttonSearch.addEventListener("click", function() {
+//   console.log(inputPokemonValue.value);
+// });
+
 const chuckQuote = new Promise(function(resolve, reject) {
   const url = "https://api.chucknorris.io/jokes/random";
   const request = new XMLHttpRequest();
@@ -8,11 +15,9 @@ const chuckQuote = new Promise(function(resolve, reject) {
 
   request.onload = () => {
     if (request.status >= 200 && request.status < 400) {
-      // Success!
       const data = JSON.parse(request.responseText);
       resolve(data);
     } else {
-      // We reached our target server, but it returned an error
       reject("Error Chuck");
     }
   };
@@ -28,11 +33,9 @@ const countryName = new Promise(function(resolve, reject) {
 
   request.onload = () => {
     if (request.status >= 200 && request.status < 400) {
-      // Success!
       const data = JSON.parse(request.responseText);
       resolve(data);
     } else {
-      // We reached our target server, but it returned an error
       reject("Error Countries");
     }
   };
@@ -41,18 +44,16 @@ const countryName = new Promise(function(resolve, reject) {
 });
 
 const pokemonName = new Promise(function(resolve, reject) {
-  const url = "https://pokeapi.co/api/v2/pokemon/" + randomNumber;
+  const url = "https://pokeapi.co/api/v2/pokemon/" + randomNumber; // + input value (howto?)
   const request = new XMLHttpRequest();
 
   request.open("get", url, true);
 
   request.onload = () => {
     if (request.status >= 200 && request.status < 400) {
-      // Success!
       const data = JSON.parse(request.responseText);
       resolve(data);
     } else {
-      // We reached our target server, but it returned an error
       reject("Error Pokemons");
     }
   };

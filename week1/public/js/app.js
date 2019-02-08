@@ -1,4 +1,4 @@
-const randomNumber = Math.floor(Math.random() * 250 + 1);
+const randomNumber = Math.floor(Math.random() * 249 + 1);
 
 // const buttonSearch = document.querySelector(".button-search");
 // const inputPokemonValue = document.querySelector(".pokemon-search");

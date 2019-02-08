@@ -809,12 +809,25 @@ buttonSearch.addEventListener("click", function findPokemon() {
     "Magearna",
     "Marshadow"
   ];
-  pokemon.forEach(function(pokemon) {
+  pokemon.forEach(pokemon => {
     if (pokemon.toUpperCase().includes(inputPokemonValue.value.toUpperCase()))
       pokemonMatch.push(pokemon);
   });
-  console.log(pokemonMatch);
+
+  console.log(pokemonMatch.slice(0, 15));
+
+  listPokemonMatch(pokemonMatch.slice(0, 15));
 });
+
+const listPokemonMatch = match => {
+  match.forEach(element => {
+    const pokemonList = document.querySelector(".pokemon-list");
+    const pokemonListItem = document.createElement("li");
+
+    pokemonListItem.appendChild(document.createTextNode(element));
+    pokemonList.appendChild(pokemonListItem);
+  });
+};
 
 const chuckQuote = new Promise(function(resolve, reject) {
   const url = "https://api.chucknorris.io/jokes/random";
@@ -871,26 +884,26 @@ const pokemonName = new Promise(function(resolve, reject) {
 });
 
 Promise.all([chuckQuote, countryName, pokemonName]).then(function(data) {
-  randomQuote(data[0]);
-  randomCountry(data[1]);
-  randomPokemon(data[2]);
+  // randomQuote(data[0]);
+  // randomCountry(data[1]);
+  // randomPokemon(data[2]);
 });
-
-function randomQuote(data) {
+//
+const randomQuote = data => {
   const quoteSentence = (document.querySelector(
     ".pokemon-sentence > h4"
   ).innerHTML = "'" + data.value + "'");
-}
+};
 
-function randomCountry(data) {
+const randomCountry = data => {
   const pokemonOrigin = (document.querySelector(
     ".pokemon-origin > h3"
   ).innerHTML = data[randomNumber].name);
-}
+};
 
-function randomPokemon(data) {
+const randomPokemon = data => {
   const pokemonName = (document.querySelector(".pokemon-name > h3").innerHTML =
     data.name);
   const pokemonImg = (document.querySelector(".pokemon-image").src =
     data.sprites.front_default);
-}
+};

@@ -1,4 +1,6 @@
-# Week 1 - Hello API 🐒
+# Web App From Scratch
+
+![Screenshot Application](./public/src/screenshot_app.png)
 
 Doel: Data ophalen uit een API en renderen in een overzichtspagina.
 
@@ -6,16 +8,20 @@ Doel: Data ophalen uit een API en renderen in een overzichtspagina.
 
 [Slides](https://drive.google.com/open?id=1Rjl9xqXoKniQSRJPdkU1O5YwWC33SJK8KiV0a-H_xZU)
 
-## Link live demo
+## Table Of Contents
 
-## Wat doet de app?
+- [What to do?](#what-to-do?)
+- [Description](#description)
+- [API's](#api's)
+- [How does it work?](#how-does-it-work)
+- [Sources](#sources)
 
-## Welke actoren zitten er in de applicatie?
+## What To Do?
 
-## Welke API wordt er gebruikt en wat zijn de beperkingen?
+## Description
 
-## Hoe flowed interactie door de applicatie?
+## API's
 
-## Welke design patterns en best practices?
+## How does it work?
 
-## Wat zou je nog willen toevoegen?
+## Sources

@@ -20,6 +20,13 @@ body {
   width: 100%;
 }
 
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
 header {
   align-items: center;
   display: flex;
@@ -144,6 +151,36 @@ main .pokedex {
 
 main .pokedex:hover {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+main .pokedex .pokemon-result {
+  align-items: flex-start;
+  display: flex;
+  height: 90%;
+  overflow: scroll;
+  margin-top: 25px;
+  padding-bottom: 25px;
+}
+
+main .pokedex .pokemon-result .pokemon-list {
+}
+
+main .pokedex .pokemon-result .pokemon-list .pokemon-list-item {
+  align-items: center;
+  background-color: var(--color-blue);
+  border-bottom: 5px solid var(--color-dark-grey);
+  border-top: 5px solid var(--color-dark-grey);
+  color: var(--color-grey);
+  display: flex;
+  height: 50px;
+  margin-bottom: 25px;
+  padding-left: 20px;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+main .pokedex .pokemon-result .pokemon-list .pokemon-list-item:last-child {
+  margin-bottom: 0;
 }
 
 main .pokedex .pokemon-name {

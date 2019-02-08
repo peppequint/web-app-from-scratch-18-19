@@ -813,10 +813,8 @@ buttonSearch.addEventListener("click", function findPokemon() {
     if (pokemon.toUpperCase().includes(inputPokemonValue.value.toUpperCase()))
       pokemonMatch.push(pokemon);
   });
-
-  console.log(pokemonMatch.slice(0, 15));
-
-  listPokemonMatch(pokemonMatch.slice(0, 15));
+  // need to reset page when button is clicked again
+  listPokemonMatch(pokemonMatch.slice(0, 10));
 });
 
 const listPokemonMatch = match => {
@@ -825,6 +823,7 @@ const listPokemonMatch = match => {
     const pokemonListItem = document.createElement("li");
 
     pokemonListItem.appendChild(document.createTextNode(element));
+    pokemonListItem.setAttribute("class", "pokemon-list-item");
     pokemonList.appendChild(pokemonListItem);
   });
 };

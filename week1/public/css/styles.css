@@ -12,10 +12,11 @@ body {
   box-sizing: border-box;
   display: grid;
   font-family: "System-ui", sans-serif;
-  grid-template-rows: 20vh 70vh 10vh;
+  grid-template-rows: 15vh 1fr 15vh;
   letter-spacing: 1px;
   line-height: 24px;
   margin: 0;
+  padding: 20px;
   width: 100%;
 }
 
@@ -29,38 +30,41 @@ header {
 }
 
 header .wrap-search {
-  max-width: 500px;
-  position: relative;
-  width: 100%;
-}
-
-header .wrap-search .pokemon-search {
-  background: none;
+  align-items: center;
   border: 5px solid var(--color-dark-grey);
   border-radius: 20px;
-  color: var(--color-dark-grey);
-  font-family: "System-ui", sans-serif;
-  font-size: 15px;
-  font-weight: 600;
+  display: flex;
   height: 75px;
   max-width: 500px;
-  padding: 20px;
+  overflow: hidden;
+  position: relative;
   transition: 0.2s ease-in;
   width: 100%;
 }
 
-header .wrap-search .pokemon-search:focus,
-header .wrap-search .pokemon-search:hover {
+header .wrap-search:hover {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+header .wrap-search .pokemon-search {
+  background: none;
+  border: none;
+  color: var(--color-dark-grey);
+  font-family: "System-ui", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 20px;
+  width: 100%;
+}
+
+header .wrap-search .pokemon-search:focus {
   outline: none;
 }
 
 header .wrap-search .button-search {
   background-color: var(--color-yellow);
-  border: 5px solid var(--color-dark-grey);
-  border-bottom-right-radius: 20px;
-  border-top-right-radius: 20px;
-  content: "\f132";
+  border: none;
+  border-left: 5px solid var(--color-dark-grey);
   height: 75px;
   position: absolute;
   right: 0;

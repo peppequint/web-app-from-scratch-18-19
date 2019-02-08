@@ -56,7 +56,7 @@ header .wrap-search .pokemon-search:hover {
 }
 
 header .wrap-search .button-search {
-  background-color: var(--color-blue);
+  background-color: var(--color-yellow);
   border: 5px solid var(--color-dark-grey);
   border-bottom-right-radius: 20px;
   border-top-right-radius: 20px;
@@ -157,7 +157,7 @@ main .pokedex .pokemon-name {
 }
 
 main .pokedex .pokemon-name h3 {
-  color: white;
+  color: var(--color-grey);
   font-family: "System-ui", sans-serif;
   font-weight: 300;
   margin: 0;
@@ -190,6 +190,34 @@ main .pokedex .pokemon-sentence h4 {
   margin: 0;
   max-width: 350px;
   text-align: center;
+}
+
+main .pokedex .pokemon-origin {
+  align-items: center;
+  background-color: var(--color-blue);
+  border: 5px solid var(--color-dark-grey);
+  border-bottom-left-radius: 20px;
+  border-top-left-radius: 20px;
+  display: flex;
+  height: 10%;
+  justify-content: space-between;
+  margin-top: 25px;
+  padding-right: 25px;
+  transform: translateX(95px);
+  width: 75%;
+}
+
+main .pokedex .pokemon-origin span {
+  color: var(--color-grey);
+  padding-left: 25px;
+}
+
+main .pokedex .pokemon-origin h3 {
+  color: var(--color-grey);
+  font-family: "System-ui", sans-serif;
+  font-weight: 500;
+  margin: 0;
+  text-transform: uppercase;
 }
 
 footer {

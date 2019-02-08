@@ -35,6 +35,7 @@ const countryName = new Promise(function(resolve, reject) {
     if (request.status >= 200 && request.status < 400) {
       const data = JSON.parse(request.responseText);
       resolve(data);
+      console.log(data);
     } else {
       reject("Error Countries");
     }
@@ -63,7 +64,7 @@ const pokemonName = new Promise(function(resolve, reject) {
 
 Promise.all([chuckQuote, countryName, pokemonName]).then(function(data) {
   randomQuote(data[0]);
-  // randomCountry(data[1]);
+  randomCountry(data[1]);
   randomPokemon(data[2]);
 });
 
@@ -72,11 +73,12 @@ function randomQuote(data) {
     ".pokemon-sentence > h4"
   ).innerHTML = "'" + data.value + "'");
 }
-//
-// function randomCountry(data) {
-//   const countryName = (document.querySelector(".country-name").innerHTML =
-//     data[randomNumber].name);
-// }
+
+function randomCountry(data) {
+  const pokemonOrigin = (document.querySelector(
+    ".pokemon-origin > h3"
+  ).innerHTML = data[randomNumber].name);
+}
 
 function randomPokemon(data) {
   const pokemonName = (document.querySelector(".pokemon-name > h3").innerHTML =

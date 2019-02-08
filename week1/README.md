@@ -1,12 +1,13 @@
-# Web App From Scratch
-
-![Screenshot Application](./public/src/screenshot_app.png)
-
-Doel: Data ophalen uit een API en renderen in een overzichtspagina.
-
-[Opdrachten](https://drive.google.com/open?id=1OVhWQNaCgSluYviTKKWcApkyPd23xow1PiExb8GYANM)
-
-[Slides](https://drive.google.com/open?id=1Rjl9xqXoKniQSRJPdkU1O5YwWC33SJK8KiV0a-H_xZU)
+<p align="center">
+	<img src="public/src/screenshot_app.png" width="920" />
+</p>
+<p align="center">
+	<h5 align="center">INTRO</h5>
+	<p align="center">
+	// Intro text
+	</p>
+</p>
+<br>
 
 ## Table Of Contents
 

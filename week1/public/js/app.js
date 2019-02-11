@@ -3,7 +3,7 @@ const randomNumber = Math.floor(Math.random() * 249 + 1);
 const buttonSearch = document.querySelector(".button-search");
 const inputPokemonValue = document.querySelector(".pokemon-search");
 
-buttonSearch.addEventListener("click", function findPokemon() {
+buttonSearch.addEventListener("click", findPokemon => {
   const pokemonMatch = [];
   const pokemon = [
     "Bulbasaur",
@@ -829,7 +829,7 @@ const listPokemonMatch = match => {
   });
 };
 
-const chuckQuote = new Promise(function(resolve, reject) {
+const chuckQuote = new Promise((resolve, reject) => {
   const url = "https://api.chucknorris.io/jokes/random";
   const request = new XMLHttpRequest();
 
@@ -847,7 +847,7 @@ const chuckQuote = new Promise(function(resolve, reject) {
   request.send();
 });
 
-const countryName = new Promise(function(resolve, reject) {
+const countryName = new Promise((resolve, reject) => {
   const url = "https://restcountries.eu/rest/v2/all";
   const request = new XMLHttpRequest();
 
@@ -865,7 +865,7 @@ const countryName = new Promise(function(resolve, reject) {
   request.send();
 });
 
-const pokemonName = new Promise(function(resolve, reject) {
+const pokemonName = new Promise((resolve, reject) => {
   const url = "https://pokeapi.co/api/v2/pokemon/" + randomNumber; // + input value (howto?)
   const request = new XMLHttpRequest();
 
@@ -883,12 +883,12 @@ const pokemonName = new Promise(function(resolve, reject) {
   request.send();
 });
 
-Promise.all([chuckQuote, countryName, pokemonName]).then(function(data) {
+Promise.all([chuckQuote, countryName, pokemonName]).then(data => {
   // randomQuote(data[0]);
   // randomCountry(data[1]);
   // randomPokemon(data[2]);
 });
-//
+
 const randomQuote = data => {
   const quoteSentence = (document.querySelector(
     ".pokemon-sentence > h4"

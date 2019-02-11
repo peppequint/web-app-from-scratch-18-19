@@ -813,13 +813,13 @@ buttonSearch.addEventListener("click", findPokemon => {
     if (pokemon.toUpperCase().includes(inputPokemonValue.value.toUpperCase()))
       pokemonMatch.push(pokemon);
   });
-
   listPokemonMatch(pokemonMatch);
 });
 
 const listPokemonMatch = match => {
   const pokemonList = document.querySelector(".pokemon-list");
   pokemonList.innerHTML = "";
+
   match.forEach(element => {
     const pokemonListItem = document.createElement("li");
 
@@ -827,7 +827,24 @@ const listPokemonMatch = match => {
     pokemonListItem.setAttribute("class", "pokemon-list-item");
     pokemonList.appendChild(pokemonListItem);
   });
+
+  resultsSearchedPokemon();
 };
+
+const resultsSearchedPokemon = () => {
+  const pokemonItems = document.querySelectorAll(".pokemon-list-item");
+  [].map.call(pokemonItems, pokemon => {
+    pokemon.addEventListener(
+      "click",
+      function() {
+        console.log(this.textContent);
+      },
+      true
+    );
+  });
+};
+
+// list item click do promise
 
 const chuckQuote = new Promise((resolve, reject) => {
   const url = "https://api.chucknorris.io/jokes/random";

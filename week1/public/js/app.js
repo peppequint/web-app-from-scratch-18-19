@@ -813,13 +813,14 @@ buttonSearch.addEventListener("click", function findPokemon() {
     if (pokemon.toUpperCase().includes(inputPokemonValue.value.toUpperCase()))
       pokemonMatch.push(pokemon);
   });
-  // need to reset page when button is clicked again
-  listPokemonMatch(pokemonMatch.slice(0, 10));
+
+  listPokemonMatch(pokemonMatch);
 });
 
 const listPokemonMatch = match => {
+  const pokemonList = document.querySelector(".pokemon-list");
+  pokemonList.innerHTML = "";
   match.forEach(element => {
-    const pokemonList = document.querySelector(".pokemon-list");
     const pokemonListItem = document.createElement("li");
 
     pokemonListItem.appendChild(document.createTextNode(element));

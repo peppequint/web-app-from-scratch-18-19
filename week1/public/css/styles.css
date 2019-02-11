@@ -12,11 +12,10 @@ body {
   box-sizing: border-box;
   display: grid;
   font-family: "System-ui", sans-serif;
-  grid-template-rows: 15vh 1fr 15vh;
+  grid-template-rows: 15vh 70vh 15vh;
   letter-spacing: 1px;
   line-height: 24px;
   margin: 0;
-  padding: 20px;
   width: 100%;
 }
 
@@ -160,10 +159,11 @@ main .pokedex .pokemon-result {
   overflow: scroll;
   margin-top: 25px;
   padding-bottom: 25px;
+  width: 100%;
 }
-
+/*
 main .pokedex .pokemon-result .pokemon-list {
-}
+} */
 
 main .pokedex .pokemon-result .pokemon-list .pokemon-list-item {
   align-items: center;
@@ -176,11 +176,15 @@ main .pokedex .pokemon-result .pokemon-list .pokemon-list-item {
   margin-bottom: 25px;
   padding-left: 20px;
   text-transform: uppercase;
-  width: 100%;
+  transition: 0.2s ease-in;
 }
 
 main .pokedex .pokemon-result .pokemon-list .pokemon-list-item:last-child {
   margin-bottom: 0;
+}
+
+main .pokedex .pokemon-result .pokemon-list .pokemon-list-item:hover {
+  cursor: pointer;
 }
 
 main .pokedex .pokemon-name {

@@ -827,30 +827,24 @@ const listPokemonMatch = match => {
 
   match.forEach(element => {
     // creates a li
-    const pokemonListItem = document.createElement("li");
+    const pokemonListItem = document.createElement("a");
     pokemonListItem.setAttribute("class", "pokemon-list-item");
+    pokemonListItem.setAttribute("href", "#" + element.toLowerCase());
     pokemonList.appendChild(pokemonListItem);
     // creates a href withing li
-    const pokemonLink = document.createElement("a");
+    const pokemonLink = document.createElement("li");
     pokemonListItem.appendChild(pokemonLink);
     pokemonLink.appendChild(document.createTextNode(element));
-    pokemonLink.setAttribute("href", element.toLowerCase());
   });
 
-  resultsSearchedPokemon();
+  resultSearchedPokemon();
 };
 
-const resultsSearchedPokemon = () => {
+const resultSearchedPokemon = () => {
   const pokemonItems = document.querySelectorAll(".pokemon-list-item");
   [].map.call(pokemonItems, pokemon => {
     // calls each li tag individually
-    pokemon.addEventListener(
-      "click",
-      function() {
-        console.log(this.textContent.toLowerCase());
-      },
-      true
-    );
+    pokemon.addEventListener("click", function() {}, true);
   });
 };
 
@@ -914,25 +908,53 @@ Promise.all([chuckQuote, countryName, pokemonName]).then(data => {
   // randomQuote(data[0]);
   // randomCountry(data[1]);
   // randomPokemon(data[2]);
+  routie(":name", name => {
+    getPokemonDetail(name);
+  });
 });
 
-const randomQuote = data => {
-  const quoteSentence = (document.querySelector(
-    ".pokemon-sentence > h4"
-  ).innerHTML = "'" + data.value + "'");
-};
+function getPokemonDetail(name) {
+  new Promise((resolve, reject) => {
+    const url = "https://pokeapi.co/api/v2/pokemon/" + name; // + input value (howto?)
+    const request = new XMLHttpRequest();
 
-const randomCountry = data => {
-  const pokemonOrigin = (document.querySelector(
-    ".pokemon-origin > h3"
-  ).innerHTML = data[randomNumber].name);
-};
+    request.open("get", url, true);
 
-const randomPokemon = data => {
-  const pokemonName = (document.querySelector(".pokemon-name > h3").innerHTML =
-    data.name);
-  const pokemonImg = (document.querySelector(".pokemon-image").src =
-    data.sprites.front_default);
-};
+    request.onload = () => {
+      if (request.status >= 200 && request.status < 400) {
+        const data = JSON.parse(request.responseText);
+        resolve(data);
+      } else {
+        reject("Error Pokemons");
+      }
+    };
+
+    request.send();
+  }).then(function(values) {
+    const pokemon = document.querySelector(".pokemon");
+    console.log(values);
+    pokemon.innerHTML = `<h3 class="pokemon-name">${values.name}</h3>
+    <img class="pokemon-image" src="${values.sprites.front_default}" alt="" />`;
+  });
+}
+
+// const randomQuote = data => {
+//   const quoteSentence = (document.querySelector(
+//     ".pokemon-sentence > h4"
+//   ).innerHTML = "'" + data.value + "'");
+// };
+//
+// const randomCountry = data => {
+//   const pokemonOrigin = (document.querySelector(
+//     ".pokemon-origin > h3"
+//   ).innerHTML = data[randomNumber].name);
+// };
+//
+// const randomPokemon = data => {
+//   const pokemonName = (document.querySelector(".pokemon-name > h3").innerHTML =
+//     data.name);
+//   const pokemonImg = (document.querySelector(".pokemon-image").src =
+//     data.sprites.front_default);
+// };
 
 // Director routing (splice into different modules)

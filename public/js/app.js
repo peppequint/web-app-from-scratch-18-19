@@ -901,9 +901,6 @@ const pokemonName = new Promise((resolve, reject) => {
   request.onload = () => {
     if (request.status >= 200 && request.status < 400) {
       const data = JSON.parse(request.responseText);
-      routie("all", () => {
-        check(data);
-      });
       resolve(data);
     } else {
       reject("Error Pokemons");
@@ -915,21 +912,15 @@ const pokemonName = new Promise((resolve, reject) => {
 
 Promise.all([chuckQuote, countryName, pokemonName]).then(data => {
   // randomQuote(data[0]);
-  randomCountry(data[1]);
-  randomPokemon(data[2]);
+  // randomCountry(data[1]);
+  // randomPokemon(data[2]);
 });
 
-function check(data) {
+const randomQuote = data => {
   const quoteSentence = (document.querySelector(
     ".pokemon-sentence > h4"
   ).innerHTML = "'" + data.value + "'");
-}
-//
-// const randomQuote = data => {
-//   const quoteSentence = (document.querySelector(
-//     ".pokemon-sentence > h4"
-//   ).innerHTML = "'" + data.value + "'");
-// };
+};
 
 const randomCountry = data => {
   const pokemonOrigin = (document.querySelector(
@@ -945,4 +936,3 @@ const randomPokemon = data => {
 };
 
 // Director routing (splice into different modules)
-routie("all");

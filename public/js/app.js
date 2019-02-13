@@ -931,10 +931,13 @@ function getPokemonDetail(name) {
 
     request.send();
   }).then(function(values) {
+    const pokemonList = document.querySelector(".pokemon-result");
     const pokemon = document.querySelector(".pokemon");
     console.log(values);
     pokemon.innerHTML = `<h3 class="pokemon-name">${values.name}</h3>
     <img class="pokemon-image" src="${values.sprites.front_default}" alt="" />`;
+    pokemon.setAttribute("style", "transform: translateX(-100%)");
+    pokemonList.setAttribute("style", "transform: translateX(-100%)");
   });
 }
 

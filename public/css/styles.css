@@ -141,29 +141,30 @@ main .pokedex {
   background-color: var(--color-yellow);
   border: 5px solid var(--color-dark-grey);
   border-radius: 20px;
+  display: flex;
   height: 65vh;
-  margin: 0 auto;
-  max-width: 500px;
+  max-width: 100%;
+  overflow: hidden;
   transition: 0.2s ease-in;
-  width: 100%;
+  width: 500px;
 }
 
 main .pokedex:hover {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 }
 
+/* overview search results */
 main .pokedex .pokemon-result {
   align-items: flex-start;
   display: flex;
   height: 90%;
   overflow: scroll;
   margin-top: 25px;
+  min-width: 100%;
   padding-bottom: 25px;
+  transition: 0.5s ease-in;
   width: 100%;
 }
-/*
-main .pokedex .pokemon-result .pokemon-list {
-} */
 
 main .pokedex .pokemon-result .pokemon-list .pokemon-list-item {
   align-items: center;
@@ -174,6 +175,7 @@ main .pokedex .pokemon-result .pokemon-list .pokemon-list-item {
   height: 50px;
   margin-bottom: 25px;
   padding-left: 20px;
+  text-decoration: none;
   transition: 0.2s ease-in;
 }
 
@@ -185,88 +187,39 @@ main .pokedex .pokemon-result .pokemon-list .pokemon-list-item:hover {
   cursor: pointer;
 }
 
-main .pokedex .pokemon-result .pokemon-list .pokemon-list-item a {
+main .pokedex .pokemon-result .pokemon-list .pokemon-list-item li {
   color: var(--color-grey);
-  text-decoration: none;
   text-transform: uppercase;
 }
 
-main .pokedex .pokemon-name {
+/* specific results */
+main .pokedex .pokemon {
+  margin-top: 25px;
+  min-width: 100%;
+  text-align: center;
+  transition: 0.5s ease-in;
+}
+
+main .pokedex .pokemon .pokemon-name {
   align-items: center;
   background-color: var(--color-red);
   border: 5px solid var(--color-dark-grey);
   border-bottom-right-radius: 20px;
   border-top-right-radius: 20px;
+  color: var(--color-grey);
   display: flex;
+  font-family: "System-ui", sans-serif;
+  font-weight: 300;
   height: 10%;
-  margin-top: 25px;
+  margin: 0;
   padding-left: 25px;
+  text-transform: uppercase;
   transform: translateX(-5px);
   width: 75%;
 }
 
-main .pokedex .pokemon-name h3 {
-  color: var(--color-grey);
-  font-family: "System-ui", sans-serif;
-  font-weight: 300;
-  margin: 0;
-  text-transform: uppercase;
-}
-
-main .pokedex .pokemon {
-  background-color: white;
-  border-bottom: 5px solid var(--color-dark-grey);
-  border-top: 5px solid var(--color-dark-grey);
-  margin-top: 25px;
-  text-align: center;
-}
-
-main .pokedex .pokemon img {
+main .pokedex .pokemon .pokemon-image {
   width: 136px;
-}
-
-main .pokedex .pokemon-sentence {
-  align-items: center;
-  display: flex;
-  margin-top: 25px;
-  justify-content: center;
-}
-
-main .pokedex .pokemon-sentence h4 {
-  color: var(--color-dark-grey);
-  font-size: 15px;
-  font-weight: 600;
-  margin: 0;
-  max-width: 350px;
-  text-align: center;
-}
-
-main .pokedex .pokemon-origin {
-  align-items: center;
-  background-color: var(--color-blue);
-  border: 5px solid var(--color-dark-grey);
-  border-bottom-left-radius: 20px;
-  border-top-left-radius: 20px;
-  display: flex;
-  height: 10%;
-  justify-content: space-between;
-  margin-top: 25px;
-  padding-right: 25px;
-  transform: translateX(95px);
-  width: 75%;
-}
-
-main .pokedex .pokemon-origin span {
-  color: var(--color-grey);
-  padding-left: 25px;
-}
-
-main .pokedex .pokemon-origin h3 {
-  color: var(--color-grey);
-  font-family: "System-ui", sans-serif;
-  font-weight: 500;
-  margin: 0;
-  text-transform: uppercase;
 }
 
 footer {

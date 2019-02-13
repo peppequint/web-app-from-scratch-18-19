@@ -809,10 +809,15 @@ buttonSearch.addEventListener("click", findPokemon => {
     "Magearna",
     "Marshadow"
   ];
+
   pokemon.forEach(pokemon => {
+    // check if input value matches with array of pokemon
     if (pokemon.toUpperCase().includes(inputPokemonValue.value.toUpperCase()))
+      // if so, push to new array
       pokemonMatch.push(pokemon);
   });
+
+  // calls function with new array
   listPokemonMatch(pokemonMatch);
 });
 
@@ -821,11 +826,11 @@ const listPokemonMatch = match => {
   pokemonList.innerHTML = "";
 
   match.forEach(element => {
+    // creates a li
     const pokemonListItem = document.createElement("li");
-
     pokemonListItem.setAttribute("class", "pokemon-list-item");
     pokemonList.appendChild(pokemonListItem);
-
+    // creates a href withing li
     const pokemonLink = document.createElement("a");
     pokemonListItem.appendChild(pokemonLink);
     pokemonLink.appendChild(document.createTextNode(element));
@@ -838,6 +843,7 @@ const listPokemonMatch = match => {
 const resultsSearchedPokemon = () => {
   const pokemonItems = document.querySelectorAll(".pokemon-list-item");
   [].map.call(pokemonItems, pokemon => {
+    // calls each li tag individually
     pokemon.addEventListener(
       "click",
       function() {
@@ -895,6 +901,9 @@ const pokemonName = new Promise((resolve, reject) => {
   request.onload = () => {
     if (request.status >= 200 && request.status < 400) {
       const data = JSON.parse(request.responseText);
+      routie("all", () => {
+        check(data);
+      });
       resolve(data);
     } else {
       reject("Error Pokemons");
@@ -906,15 +915,21 @@ const pokemonName = new Promise((resolve, reject) => {
 
 Promise.all([chuckQuote, countryName, pokemonName]).then(data => {
   // randomQuote(data[0]);
-  // randomCountry(data[1]);
-  // randomPokemon(data[2]);
+  randomCountry(data[1]);
+  randomPokemon(data[2]);
 });
 
-const randomQuote = data => {
+function check(data) {
   const quoteSentence = (document.querySelector(
     ".pokemon-sentence > h4"
   ).innerHTML = "'" + data.value + "'");
-};
+}
+//
+// const randomQuote = data => {
+//   const quoteSentence = (document.querySelector(
+//     ".pokemon-sentence > h4"
+//   ).innerHTML = "'" + data.value + "'");
+// };
 
 const randomCountry = data => {
   const pokemonOrigin = (document.querySelector(
@@ -930,3 +945,4 @@ const randomPokemon = data => {
 };
 
 // Director routing (splice into different modules)
+routie("all");

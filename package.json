@@ -16,7 +16,5 @@
     "url": "https://github.com/peppequint/web-app-from-scratch-18-19/issues"
   },
   "homepage": "https://github.com/peppequint/web-app-from-scratch-18-19#readme",
-  "dependencies": {
-    "page": "^1.11.4"
-  }
+  "dependencies": {}
 }

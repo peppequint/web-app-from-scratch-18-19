@@ -837,7 +837,7 @@ const resultsSearchedPokemon = () => {
     pokemon.addEventListener(
       "click",
       function() {
-        console.log(this.textContent);
+        console.log(this.textContent.toLowerCase());
       },
       true
     );

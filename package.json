@@ -1,0 +1,22 @@
+{
+  "name": "web-app-from-scratch-18-19",
+  "version": "1.0.0",
+  "description": "wafs 18-19 project",
+  "main": "./public/js/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peppequint/web-app-from-scratch-18-19.git"
+  },
+  "author": "Peppe-Quit Boogaard",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/peppequint/web-app-from-scratch-18-19/issues"
+  },
+  "homepage": "https://github.com/peppequint/web-app-from-scratch-18-19#readme",
+  "dependencies": {
+    "page": "^1.11.4"
+  }
+}

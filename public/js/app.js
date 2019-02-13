@@ -823,9 +823,13 @@ const listPokemonMatch = match => {
   match.forEach(element => {
     const pokemonListItem = document.createElement("li");
 
-    pokemonListItem.appendChild(document.createTextNode(element));
     pokemonListItem.setAttribute("class", "pokemon-list-item");
     pokemonList.appendChild(pokemonListItem);
+
+    const pokemonLink = document.createElement("a");
+    pokemonListItem.appendChild(pokemonLink);
+    pokemonLink.appendChild(document.createTextNode(element));
+    pokemonLink.setAttribute("href", element.toLowerCase());
   });
 
   resultsSearchedPokemon();
@@ -924,3 +928,5 @@ const randomPokemon = data => {
   const pokemonImg = (document.querySelector(".pokemon-image").src =
     data.sprites.front_default);
 };
+
+// Director routing (splice into different modules)

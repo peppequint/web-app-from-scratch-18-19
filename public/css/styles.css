@@ -170,12 +170,10 @@ main .pokedex .pokemon-result .pokemon-list .pokemon-list-item {
   background-color: var(--color-blue);
   border-bottom: 5px solid var(--color-dark-grey);
   border-top: 5px solid var(--color-dark-grey);
-  color: var(--color-grey);
   display: flex;
   height: 50px;
   margin-bottom: 25px;
   padding-left: 20px;
-  text-transform: uppercase;
   transition: 0.2s ease-in;
 }
 
@@ -185,6 +183,12 @@ main .pokedex .pokemon-result .pokemon-list .pokemon-list-item:last-child {
 
 main .pokedex .pokemon-result .pokemon-list .pokemon-list-item:hover {
   cursor: pointer;
+}
+
+main .pokedex .pokemon-result .pokemon-list .pokemon-list-item a {
+  color: var(--color-grey);
+  text-decoration: none;
+  text-transform: uppercase;
 }
 
 main .pokedex .pokemon-name {

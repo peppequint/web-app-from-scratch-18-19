@@ -856,6 +856,7 @@ const pokemonName = data => {
 
     request.send();
   }).then(data => {
+    console.log(data);
     const pokemonList = document.querySelector(".pokemon-result");
 
     pokemon.innerHTML = `<h3 class="pokemon-name">${data.name}</h3>
@@ -886,7 +887,7 @@ const randomQuote = data => {
   }).then(data => {
     pokemon.innerHTML += `<p class='random-quote'>${data.value}</p>`;
 
-    console.log(data.value);
+    console.log(data);
   });
 };
 
@@ -908,6 +909,7 @@ const countryOfOrigin = data => {
 
     request.send();
   }).then(data => {
+    console.log(data[randomNumber]);
     pokemon.innerHTML += `<p class='country-name'>${
       data[randomNumber].name
     }</p>`;
@@ -917,7 +919,7 @@ const countryOfOrigin = data => {
 Promise.all([pokemonName, randomQuote, countryOfOrigin]).then(data => {
   routie(":name", data => {
     pokemonName(data);
-    randomQuote(data[1]);
-    countryOfOrigin(data[2]);
+    randomQuote(data);
+    countryOfOrigin(data);
   });
 });

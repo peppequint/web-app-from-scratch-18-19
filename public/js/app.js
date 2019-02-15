@@ -1,5 +1,7 @@
+const randomNumber = Math.floor(Math.random() * 249 + 1);
 const buttonSearch = document.querySelector(".button-search");
 const inputPokemonValue = document.querySelector(".pokemon-search");
+const pokemon = document.querySelector(".pokemon");
 
 buttonSearch.addEventListener("click", findPokemon => {
   const pokemonMatch = [];
@@ -836,9 +838,9 @@ const listPokemonMatch = match => {
   });
 };
 
-const pokemonName = name => {
+const pokemonName = data => {
   new Promise((resolve, reject) => {
-    const url = "https://pokeapi.co/api/v2/pokemon/" + name;
+    const url = "https://pokeapi.co/api/v2/pokemon/" + data;
     const request = new XMLHttpRequest();
 
     request.open("get", url, true);
@@ -855,7 +857,6 @@ const pokemonName = name => {
     request.send();
   }).then(data => {
     const pokemonList = document.querySelector(".pokemon-result");
-    const pokemon = document.querySelector(".pokemon");
 
     pokemon.innerHTML = `<h3 class="pokemon-name">${data.name}</h3>
     <img class="pokemon-image" src="${data.sprites.front_default}" alt="" />`;
@@ -865,8 +866,58 @@ const pokemonName = name => {
   });
 };
 
-Promise.all([pokemonName]).then(data => {
-  routie(":name", name => {
-    pokemonName(name);
+const randomQuote = data => {
+  new Promise(function(resolve, reject) {
+    const url = "https://api.chucknorris.io/jokes/random";
+    const request = new XMLHttpRequest();
+
+    request.open("get", url, true);
+
+    request.onload = () => {
+      if (request.status >= 200 && request.status < 400) {
+        const data = JSON.parse(request.responseText);
+        resolve(data);
+      } else {
+        reject("Error Chuck");
+      }
+    };
+
+    request.send();
+  }).then(data => {
+    pokemon.innerHTML += `<p class='random-quote'>${data.value}</p>`;
+
+    console.log(data.value);
+  });
+};
+
+const countryOfOrigin = data => {
+  new Promise(function(resolve, reject) {
+    const url = "https://restcountries.eu/rest/v2/all";
+    const request = new XMLHttpRequest();
+
+    request.open("get", url, true);
+
+    request.onload = () => {
+      if (request.status >= 200 && request.status < 400) {
+        const data = JSON.parse(request.responseText);
+        resolve(data);
+      } else {
+        reject("Error Country");
+      }
+    };
+
+    request.send();
+  }).then(data => {
+    pokemon.innerHTML += `<p class='country-name'>${
+      data[randomNumber].name
+    }</p>`;
+  });
+};
+
+Promise.all([pokemonName, randomQuote, countryOfOrigin]).then(data => {
+  routie(":name", data => {
+    pokemonName(data);
+    randomQuote(data[1]);
+    countryOfOrigin(data[2]);
   });
 });

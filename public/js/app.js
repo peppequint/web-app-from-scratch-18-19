@@ -836,31 +836,7 @@ const listPokemonMatch = match => {
   });
 };
 
-const pokemonName = new Promise((resolve, reject) => {
-  const url = "https://pokeapi.co/api/v2/pokemon/";
-  const request = new XMLHttpRequest();
-
-  request.open("get", url, true);
-
-  request.onload = () => {
-    if (request.status >= 200 && request.status < 400) {
-      const data = JSON.parse(request.responseText);
-      resolve(data);
-    } else {
-      reject("Error Pokemons");
-    }
-  };
-
-  request.send();
-});
-
-Promise.all([pokemonName]).then(data => {
-  routie(":name", name => {
-    getPokemonDetail(name);
-  });
-});
-
-function getPokemonDetail(name) {
+const pokemonName = name => {
   new Promise((resolve, reject) => {
     const url = "https://pokeapi.co/api/v2/pokemon/" + name;
     const request = new XMLHttpRequest();
@@ -877,7 +853,7 @@ function getPokemonDetail(name) {
     };
 
     request.send();
-  }).then(function(data) {
+  }).then(data => {
     const pokemonList = document.querySelector(".pokemon-result");
     const pokemon = document.querySelector(".pokemon");
 
@@ -887,4 +863,10 @@ function getPokemonDetail(name) {
     pokemon.setAttribute("style", "transform: translateX(-100%)");
     pokemonList.setAttribute("style", "transform: translateX(-100%)");
   });
-}
+};
+
+Promise.all([pokemonName]).then(data => {
+  routie(":name", name => {
+    pokemonName(name);
+  });
+});

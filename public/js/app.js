@@ -1,5 +1,3 @@
-const randomNumber = Math.floor(Math.random() * 249 + 1);
-
 const buttonSearch = document.querySelector(".button-search");
 const inputPokemonValue = document.querySelector(".pokemon-search");
 
@@ -836,58 +834,10 @@ const listPokemonMatch = match => {
     pokemonListItem.appendChild(pokemonLink);
     pokemonLink.appendChild(document.createTextNode(element));
   });
-
-  resultSearchedPokemon();
 };
-
-const resultSearchedPokemon = () => {
-  const pokemonItems = document.querySelectorAll(".pokemon-list-item");
-  [].map.call(pokemonItems, pokemon => {
-    // calls each li tag individually
-    pokemon.addEventListener("click", function() {}, true);
-  });
-};
-
-// list item click do promise
-
-const chuckQuote = new Promise((resolve, reject) => {
-  const url = "https://api.chucknorris.io/jokes/random";
-  const request = new XMLHttpRequest();
-
-  request.open("get", url, true);
-
-  request.onload = () => {
-    if (request.status >= 200 && request.status < 400) {
-      const data = JSON.parse(request.responseText);
-      resolve(data);
-    } else {
-      reject("Error Chuck");
-    }
-  };
-
-  request.send();
-});
-
-const countryName = new Promise((resolve, reject) => {
-  const url = "https://restcountries.eu/rest/v2/all";
-  const request = new XMLHttpRequest();
-
-  request.open("get", url, true);
-
-  request.onload = () => {
-    if (request.status >= 200 && request.status < 400) {
-      const data = JSON.parse(request.responseText);
-      resolve(data);
-    } else {
-      reject("Error Countries");
-    }
-  };
-
-  request.send();
-});
 
 const pokemonName = new Promise((resolve, reject) => {
-  const url = "https://pokeapi.co/api/v2/pokemon/" + randomNumber; // + input value (howto?)
+  const url = "https://pokeapi.co/api/v2/pokemon/";
   const request = new XMLHttpRequest();
 
   request.open("get", url, true);
@@ -904,10 +854,7 @@ const pokemonName = new Promise((resolve, reject) => {
   request.send();
 });
 
-Promise.all([chuckQuote, countryName, pokemonName]).then(data => {
-  // randomQuote(data[0]);
-  // randomCountry(data[1]);
-  // randomPokemon(data[2]);
+Promise.all([pokemonName]).then(data => {
   routie(":name", name => {
     getPokemonDetail(name);
   });
@@ -915,7 +862,7 @@ Promise.all([chuckQuote, countryName, pokemonName]).then(data => {
 
 function getPokemonDetail(name) {
   new Promise((resolve, reject) => {
-    const url = "https://pokeapi.co/api/v2/pokemon/" + name; // + input value (howto?)
+    const url = "https://pokeapi.co/api/v2/pokemon/" + name;
     const request = new XMLHttpRequest();
 
     request.open("get", url, true);
@@ -930,34 +877,14 @@ function getPokemonDetail(name) {
     };
 
     request.send();
-  }).then(function(values) {
+  }).then(function(data) {
     const pokemonList = document.querySelector(".pokemon-result");
     const pokemon = document.querySelector(".pokemon");
-    console.log(values);
-    pokemon.innerHTML = `<h3 class="pokemon-name">${values.name}</h3>
-    <img class="pokemon-image" src="${values.sprites.front_default}" alt="" />`;
+
+    pokemon.innerHTML = `<h3 class="pokemon-name">${data.name}</h3>
+    <img class="pokemon-image" src="${data.sprites.front_default}" alt="" />`;
+
     pokemon.setAttribute("style", "transform: translateX(-100%)");
     pokemonList.setAttribute("style", "transform: translateX(-100%)");
   });
 }
-
-// const randomQuote = data => {
-//   const quoteSentence = (document.querySelector(
-//     ".pokemon-sentence > h4"
-//   ).innerHTML = "'" + data.value + "'");
-// };
-//
-// const randomCountry = data => {
-//   const pokemonOrigin = (document.querySelector(
-//     ".pokemon-origin > h3"
-//   ).innerHTML = data[randomNumber].name);
-// };
-//
-// const randomPokemon = data => {
-//   const pokemonName = (document.querySelector(".pokemon-name > h3").innerHTML =
-//     data.name);
-//   const pokemonImg = (document.querySelector(".pokemon-image").src =
-//     data.sprites.front_default);
-// };
-
-// Director routing (splice into different modules)

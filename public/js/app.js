@@ -46,14 +46,21 @@ const render = {
     });
   },
   detail: item => {
+    const pokemonHeader = document.querySelector(".header");
+    const pokemonList = document.querySelector(".pokemon-list");
     const pokemonItem = document.querySelector(".pokemon-item");
-    const pokemonList = document.querySelector(".pokemon-result");
+
+    document.querySelector(".pokeball").style.animation =
+      "2s rotating infinite";
+
+    pokemonHeader.setAttribute("style", "transform: translateX(-100%)");
+    pokemonList.setAttribute("style", "transform: translateX(-100%)");
+    pokemonItem.setAttribute("style", "transform: translateX(-100%)");
 
     pokemonItem.innerHTML = `<h3 class="pokemon-name">${item.name}</h3>
     <img class="pokemon-image" src="${item.sprites.front_default}" alt="" />`;
 
-    pokemonItem.setAttribute("style", "transform: translateX(-100%)");
-    pokemonList.setAttribute("style", "transform: translateX(-100%)");
+    console.log(item);
   }
 };
 
@@ -65,18 +72,28 @@ const router = {
     });
   },
   handle: () => {
-    const pokemonButton = document.querySelector(".button-search");
-    const inputPokemonValue = document.querySelector(".pokemon-search");
+    const buttonPokemon = document.querySelector(".button-search");
+    const inputPokemon = document.querySelector(".pokemon-search");
 
-    pokemonButton.addEventListener("click", showPokemonList => {
+    const feedbackPokeball = document.querySelector(".pokeball");
+
+    inputPokemon.addEventListener("input", inputField => {
+      const value = inputPokemon.value;
+
+      if (value) {
+        feedbackPokeball.classList.add("pokeball-active");
+      } else if (!value) {
+        feedbackPokeball.classList.remove("pokeball-active");
+      }
+    });
+
+    buttonPokemon.addEventListener("click", showPokemonList => {
       const pokemonMatch = [];
 
-      pokemonList.pokemon.forEach(pokemon => {
-        if (
-          pokemon.toUpperCase().includes(inputPokemonValue.value.toUpperCase())
-        )
-          // if so, push to new array
+      pokemonList.pokemon.map(pokemon => {
+        if (pokemon.toUpperCase().includes(inputPokemon.value.toUpperCase())) {
           pokemonMatch.push(pokemon);
+        }
       });
       render.overview(pokemonMatch);
     });

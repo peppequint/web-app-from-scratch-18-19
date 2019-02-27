@@ -6,8 +6,9 @@
     <link rel="stylesheet" href="public/css/styles.css" />
   </head>
   <body>
-    <header class="header">
-      <div class="wrap-search">
+    <main class="pokedex">
+      <!-- search bar -->
+      <header class="header">
         <input
           class="pokemon-search"
           type="text"
@@ -16,15 +17,11 @@
         <button class="button-search" type="submit">
           <div class="pokeball"></div>
         </button>
-      </div>
-    </header>
-    <main class="container">
-      <section class="pokedex">
-        <!-- overview search results -->
-        <article class="pokemon-result"><ul class="pokemon-list"></ul></article>
-        <!-- specific result -->
-        <article class="pokemon-item"></article>
-      </section>
+      </header>
+      <!-- overview search results -->
+      <ul class="pokemon-list"></ul>
+      <!-- specific result -->
+      <section class="pokemon-item"></section>
     </main>
 
     <aside class="pokedex-loader"></aside>

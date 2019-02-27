@@ -193,14 +193,14 @@ main .pokedex .pokemon-result .pokemon-list .pokemon-list-item li {
 }
 
 /* specific results */
-main .pokedex .pokemon {
+main .pokedex .pokemon-item {
   margin-top: 25px;
   min-width: 100%;
   text-align: center;
   transition: 0.5s ease-in;
 }
 
-main .pokedex .pokemon .pokemon-name {
+main .pokedex .pokemon-item .pokemon-name {
   align-items: center;
   background-color: var(--color-red);
   border: 5px solid var(--color-dark-grey);
@@ -218,7 +218,7 @@ main .pokedex .pokemon .pokemon-name {
   width: 75%;
 }
 
-main .pokedex .pokemon .pokemon-image {
+main .pokedex .pokemon-item .pokemon-image {
   width: 136px;
 }
 

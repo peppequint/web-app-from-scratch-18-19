@@ -1,4 +1,5 @@
-pokemonList = {};
+import pokemon from "./data/pokemon.js";
+
 const app = {
   init: () => {
     console.log("Initializing");
@@ -13,7 +14,7 @@ const app = {
 };
 
 const api = {
-  call: item => {
+  getPokemon: item => {
     return new Promise(function(resolve, reject) {
       const request = new XMLHttpRequest();
       const url = app.link.urlPokemon + item;
@@ -21,7 +22,20 @@ const api = {
       request.open("get", url, true);
       request.addEventListener("load", () => {
         const data = JSON.parse(request.response);
-        render.detail(data);
+        render.detailPokemon(data);
+      });
+      request.send();
+    });
+  },
+  getChuck: quote => {
+    return new Promise(function(resolve, reject) {
+      const request = new XMLHttpRequest();
+      const url = app.link.urlChuck;
+
+      request.open("get", url, true);
+      request.addEventListener("load", () => {
+        const data = JSON.parse(request.response);
+        render.detailChuck(data);
       });
       request.send();
     });
@@ -45,7 +59,7 @@ const render = {
       pokemonLink.appendChild(document.createTextNode(element));
     });
   },
-  detail: item => {
+  detailPokemon: item => {
     const pokemonHeader = document.querySelector(".header");
     const pokemonList = document.querySelector(".pokemon-list");
     const pokemonItem = document.querySelector(".pokemon-item");
@@ -61,6 +75,9 @@ const render = {
     <img class="pokemon-image" src="${item.sprites.front_default}" alt="" />`;
 
     console.log(item);
+  },
+  detailChuck: quote => {
+    console.log(quote);
   }
 };
 
@@ -68,7 +85,8 @@ const router = {
   init: () => {
     routie("");
     routie(":pokemon", data => {
-      api.call(data);
+      api.getPokemon(data);
+      api.getChuck(data);
     });
   },
   handle: () => {
@@ -90,7 +108,7 @@ const router = {
     buttonPokemon.addEventListener("click", showPokemonList => {
       const pokemonMatch = [];
 
-      pokemonList.pokemon.map(pokemon => {
+      pokemon.map(pokemon => {
         if (pokemon.toUpperCase().includes(inputPokemon.value.toUpperCase())) {
           pokemonMatch.push(pokemon);
         }

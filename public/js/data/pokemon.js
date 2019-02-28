@@ -1,4 +1,4 @@
-pokemonList.pokemon = [
+const pokemon = [
   "Bulbasaur",
   "Ivysaur",
   "Venusaur",
@@ -802,3 +802,5 @@ pokemonList.pokemon = [
   "Magearna",
   "Marshadow"
 ];
+
+export default pokemon;

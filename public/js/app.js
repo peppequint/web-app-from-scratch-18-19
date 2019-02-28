@@ -117,11 +117,11 @@ const render = {
     const randomCountry = Math.floor(Math.random() * 249 + 1);
 
     country.innerHTML = `
-    <img class="pokemon-icon" src="public/src/img/_Pokemon-Location.png" alt="pokemon icon"/>
+    <img class="pokemon-icon" src="./public/src/img/_Pokemon-Location.png" alt="pokemon icon"/>
     <h5>${data[2][randomCountry].name}</h5>
-    <img class="pokemon-icon" src="public/src/img/_Bookmark.png" alt="pokemon icon"/>
+    <img class="pokemon-icon" src="./public/src/img/_Bookmark.png" alt="pokemon icon"/>
     <h5>${data[2][randomCountry].capital}</h5>
-    <img class="pokemon-icon" src="public/src/img/_Coin.png" alt="pokemon icon"/>
+    <img class="pokemon-icon" src="./public/src/img/_Coin.png" alt="pokemon icon"/>
     <h5>${data[2][randomCountry].currencies[0].name}</h5>
     `;
   }

@@ -80,6 +80,7 @@ const render = {
     });
   },
   detail: data => {
+    // pokemon part
     const pokemonOverview = document.querySelector(".pokemon-item");
 
     pokemonOverview.setAttribute("style", "transform: translateX(-100%)");
@@ -106,6 +107,22 @@ const render = {
         data[0].base_experience
       }</span></li>
     </ul>
+    `;
+
+    // country part
+    const country = document.createElement("div");
+    country.setAttribute("class", "country-of-origin");
+    pokemonOverview.appendChild(country);
+
+    const randomCountry = Math.floor(Math.random() * 249 + 1);
+
+    country.innerHTML = `
+    <img class="pokemon-icon" src="public/src/img/_Pokemon-Location.png" alt="pokemon icon"/>
+    <h5>${data[2][randomCountry].name}</h5>
+    <img class="pokemon-icon" src="public/src/img/_Bookmark.png" alt="pokemon icon"/>
+    <h5>${data[2][randomCountry].capital}</h5>
+    <img class="pokemon-icon" src="public/src/img/_Coin.png" alt="pokemon icon"/>
+    <h5>${data[2][randomCountry].currencies[0].name}</h5>
     `;
   }
 };

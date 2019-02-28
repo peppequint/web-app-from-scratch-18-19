@@ -50,6 +50,10 @@ button:focus {
   outline: none;
 }
 
+.pokemon-icon {
+  max-width: 36px;
+}
+
 .pokedex {
   background-color: var(--yellow);
   border: 5px solid var(--dark-blue);
@@ -69,7 +73,7 @@ button:focus {
   display: flex;
   height: 100px;
   justify-content: space-between;
-  transition: 0.75s ease-in;
+  transition: 1.5s ease-in;
   width: 100%;
 }
 
@@ -149,7 +153,7 @@ button:focus {
 }
 
 .pokeball-active {
-  animation: 2s pokeball infinite;
+  animation: 1s pokeball infinite;
   transform: rotate(0deg);
 }
 
@@ -159,7 +163,7 @@ button:focus {
   padding-top: 30px;
   min-width: 100%;
   overflow: scroll;
-  transition: 0.75s ease-in;
+  transition: 1.5s ease-in;
 }
 
 .pokedex .pokemon-list .pokemon-list-item {
@@ -193,24 +197,23 @@ button:focus {
   flex-direction: column;
   height: 100%;
   min-width: 100%;
-  transition: 0.75s ease-in;
+  transition: 1.5s ease-in;
   width: 100%;
 }
 
 .pokedex .pokemon-item a {
   align-items: center;
   background-color: var(--light-blue);
-  border-top: 5px solid var(--dark-blue);
   color: var(--dark-blue);
   font-family: "System-ui", sans-serif;
   font-size: 15px;
   font-weight: 600;
   display: flex;
-  height: 66px;
+  height: 69px;
   letter-spacing: 1px;
   justify-content: center;
   margin-top: auto;
-  order: 2;
+  order: 3;
   text-transform: uppercase;
 }
 
@@ -220,6 +223,34 @@ button:focus {
   flex-flow: row wrap;
   order: 1;
   width: 100%;
+}
+
+.pokedex .pokemon-item .country-of-origin {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0;
+  order: 2;
+}
+
+.pokedex .pokemon-item .country-of-origin img {
+  background-color: var(--white);
+  border-bottom: 5px solid var(--dark-blue);
+  border-right: 5px solid var(--dark-blue);
+  max-width: 51px;
+  padding: 10px 71px;
+}
+
+.pokedex .pokemon-item .country-of-origin h5 {
+  align-items: center;
+  border-bottom: 5px solid var(--dark-blue);
+  display: flex;
+  height: 70px;
+  justify-content: center;
+  margin: 0 auto;
+  text-align: center;
+  width: 302px;
 }
 
 .pokedex .pokemon-item .pokemon-stats .pokemon-name {
@@ -289,14 +320,9 @@ button:focus {
     transform: rotate(360deg);
   }
 
-  30% {
-    transform: rotate(260deg);
-  }
-
-  75% {
+  50% {
     transform: rotate(180deg);
   }
-
   100% {
     transform: rotate(0);
   }

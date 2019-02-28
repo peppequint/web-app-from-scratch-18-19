@@ -28,7 +28,6 @@ ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  width: 100%;
 }
 
 .pokedex {
@@ -186,10 +185,42 @@ ul {
   justify-content: center;
   margin: 0;
   text-transform: uppercase;
+  width: 100%;
 }
 
-main .pokedex .pokemon-item .pokemon-image {
-  width: 136px;
+.pokedex .pokemon-item .pokemon-stats {
+  display: flex;
+  flex-direction: row;
+  flex-flow: row wrap;
+  width: 100%;
+}
+
+.pokedex .pokemon-item .pokemon-stats .pokemon-image {
+  background-color: var(--white);
+  border-bottom: 5px solid var(--dark-blue);
+  border-right: 5px solid var(--dark-blue);
+  height: 133px;
+  max-width: 133px;
+  padding: 30px;
+}
+
+.pokedex .pokemon-item .pokemon-stats ul {
+  width: 302px;
+}
+
+.pokedex .pokemon-item .pokemon-stats .pokemon-data {
+  align-items: center;
+  background-color: var(--blue);
+  border-bottom: 5px solid var(--dark-blue);
+  color: var(--white);
+  display: flex;
+  height: 61px;
+  padding: 0px 30px;
+}
+
+.pokedex .pokemon-item .pokemon-stats .pokemon-data span {
+  font-weight: bold;
+  margin-left: auto;
 }
 
 footer {

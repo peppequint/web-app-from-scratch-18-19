@@ -14,6 +14,13 @@ const app = {
 };
 
 const api = {
+  call: data => {
+    return Promise.all([
+      api.getPokemon(data),
+      api.getChuck(data),
+      api.getCountry(data)
+    ]).then(data => render.detail(data), console.log("Solved data"));
+  },
   getPokemon: item => {
     return new Promise(function(resolve, reject) {
       const request = new XMLHttpRequest();
@@ -22,7 +29,7 @@ const api = {
       request.open("get", url, true);
       request.addEventListener("load", () => {
         const data = JSON.parse(request.response);
-        render.detailPokemon(data);
+        resolve(data);
       });
       request.send();
     });
@@ -35,7 +42,20 @@ const api = {
       request.open("get", url, true);
       request.addEventListener("load", () => {
         const data = JSON.parse(request.response);
-        render.detailChuck(data);
+        resolve(data);
+      });
+      request.send();
+    });
+  },
+  getCountry: country => {
+    return new Promise(function(resolve, reject) {
+      const request = new XMLHttpRequest();
+      const url = app.link.urlCountry;
+
+      request.open("get", url, true);
+      request.addEventListener("load", () => {
+        const data = JSON.parse(request.response);
+        resolve(data);
       });
       request.send();
     });
@@ -59,22 +79,34 @@ const render = {
       pokemonLink.appendChild(document.createTextNode(element));
     });
   },
-  detailPokemon: item => {
-    const pokemonHeader = document.querySelector(".header");
-    const pokemonList = document.querySelector(".pokemon-list");
-    const pokemonItem = document.querySelector(".pokemon-item");
+  detail: data => {
+    const pokemonOverview = document.querySelector(".pokemon-item");
 
+    pokemonOverview.setAttribute("style", "transform: translateX(-100%)");
     document.querySelector(".pokeball").style.animation =
       "2s rotating infinite";
+    document
+      .querySelector(".header")
+      .setAttribute("style", "transform: translateX(-100%)");
+    document
+      .querySelector(".pokemon-list")
+      .setAttribute("style", "transform: translateX(-100%)");
 
-    pokemonHeader.setAttribute("style", "transform: translateX(-100%)");
-    pokemonList.setAttribute("style", "transform: translateX(-100%)");
-    pokemonItem.setAttribute("style", "transform: translateX(-100%)");
+    const pokemonStats = document.createElement("div");
+    pokemonStats.setAttribute("class", "pokemon-stats");
+    pokemonOverview.appendChild(pokemonStats);
 
-    pokemonItem.innerHTML = `<h3 class="pokemon-name">${item.name}</h3>
-    <img class="pokemon-image" src="${item.sprites.front_default}" alt="" />`;
-
-    console.log(item);
+    pokemonStats.innerHTML = `
+    <h3 class="pokemon-name">${data[0].name}</h3>
+    <img class="pokemon-image" src="${data[0].sprites.front_default}" alt=""/>
+    <ul>
+      <li class="pokemon-data">Height: <span>${data[0].height}</span></li>
+      <li class="pokemon-data">Weight: <span>${data[0].weight}</span></li>
+      <li class="pokemon-data">Experience: <span>${
+        data[0].base_experience
+      }</span></li>
+    </ul>
+    `;
   },
   detailChuck: quote => {
     console.log(quote);
@@ -85,8 +117,7 @@ const router = {
   init: () => {
     routie("");
     routie(":pokemon", data => {
-      api.getPokemon(data);
-      api.getChuck(data);
+      api.call(data);
     });
   },
   handle: () => {

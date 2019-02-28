@@ -107,15 +107,12 @@ const render = {
       }</span></li>
     </ul>
     `;
-  },
-  detailChuck: quote => {
-    console.log(quote);
   }
 };
 
 const router = {
   init: () => {
-    routie("");
+    routie("/");
     routie(":pokemon", data => {
       api.call(data);
     });

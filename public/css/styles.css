@@ -73,7 +73,7 @@ button:focus {
   display: flex;
   height: 100px;
   justify-content: space-between;
-  transition: 1.5s ease-in;
+  transition: 0.75s ease-in;
   width: 100%;
 }
 
@@ -163,7 +163,7 @@ button:focus {
   padding-top: 30px;
   min-width: 100%;
   overflow: scroll;
-  transition: 1.5s ease-in;
+  transition: 0.75s ease-in;
 }
 
 .pokedex .pokemon-list .pokemon-list-item {
@@ -197,7 +197,7 @@ button:focus {
   flex-direction: column;
   height: 100%;
   min-width: 100%;
-  transition: 1.5s ease-in;
+  transition: 0.75s ease-in;
   width: 100%;
 }
 

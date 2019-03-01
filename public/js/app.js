@@ -14,7 +14,7 @@ const app = {
 };
 
 const api = {
-  call: data => {
+  getData: data => {
     return Promise.all([
       api.getPokemon(data),
       api.getChuck(data),
@@ -131,7 +131,7 @@ const router = {
   init: () => {
     routie("/");
     routie(":pokemon", data => {
-      api.call(data);
+      api.getData(data);
     });
   },
   handle: () => {

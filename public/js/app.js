@@ -8,36 +8,21 @@ const app = {
   },
   link: {
     urlPokemon: "https://pokeapi.co/api/v2/pokemon/",
-    urlChuck: "https://api.chucknorris.io/jokes/random",
     urlCountry: "https://restcountries.eu/rest/v2/all"
   }
 };
 
 const api = {
   getData: data => {
-    return Promise.all([
-      api.getPokemon(data),
-      api.getChuck(data),
-      api.getCountry(data)
-    ]).then(data => render.detail(data), console.log("Solved data"));
+    return Promise.all([api.getPokemon(data), api.getCountry(data)]).then(
+      data => render.detail(data),
+      console.log("Solved data")
+    );
   },
   getPokemon: item => {
     return new Promise(function(resolve, reject) {
       const request = new XMLHttpRequest();
       const url = app.link.urlPokemon + item;
-
-      request.open("get", url, true);
-      request.addEventListener("load", () => {
-        const data = JSON.parse(request.response);
-        resolve(data);
-      });
-      request.send();
-    });
-  },
-  getChuck: quote => {
-    return new Promise(function(resolve, reject) {
-      const request = new XMLHttpRequest();
-      const url = app.link.urlChuck;
 
       request.open("get", url, true);
       request.addEventListener("load", () => {
@@ -118,11 +103,11 @@ const render = {
 
     country.innerHTML = `
     <img class="pokemon-icon" src="./public/src/Pokemon-Location.png" alt="pokemon icon"/>
-    <h5>${data[2][randomCountry].name}</h5>
+    <h5>${data[1][randomCountry].name}</h5>
     <img class="pokemon-icon" src="./public/src/Bookmark.png" alt="pokemon icon"/>
-    <h5>${data[2][randomCountry].capital}</h5>
+    <h5>${data[1][randomCountry].capital}</h5>
     <img class="pokemon-icon" src="./public/src/Coin.png" alt="pokemon icon"/>
-    <h5>${data[2][randomCountry].currencies[0].name}</h5>
+    <h5>${data[1][randomCountry].currencies[0].name}</h5>
     `;
   }
 };

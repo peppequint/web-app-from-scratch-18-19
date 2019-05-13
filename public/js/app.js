@@ -1,5 +1,3 @@
-import pokemon from "./data/pokemon.js";
-
 const app = {
   init: () => {
     console.log("Initializing");
@@ -14,15 +12,15 @@ const app = {
 
 const api = {
   getData: data => {
-    return Promise.all([api.getPokemon(data), api.getCountry(data)]).then(
-      data => render.detail(data),
-      console.log("Solved data")
+    return Promise.all([api.pokemon(data), api.country(data)]).then(data =>
+      render.overview(data)
     );
   },
-  getPokemon: item => {
+  pokemon: item => {
     return new Promise(function(resolve, reject) {
       const request = new XMLHttpRequest();
-      const url = app.link.urlPokemon + item;
+      const overview = "?limit=30&offset=0";
+      const url = app.link.urlPokemon + overview;
 
       request.open("get", url, true);
       request.addEventListener("load", () => {
@@ -32,7 +30,21 @@ const api = {
       request.send();
     });
   },
-  getCountry: country => {
+  detailPokemon: detail => {
+    return new Promise(function(resolve, reject) {
+      const request = new XMLHttpRequest();
+      const url = app.link.urlPokemon + detail;
+
+      request.open("get", url, true);
+      request.addEventListener("load", () => {
+        const data = JSON.parse(request.response);
+        resolve(data);
+        render.detail(data);
+      });
+      request.send();
+    });
+  },
+  country: country => {
     return new Promise(function(resolve, reject) {
       const request = new XMLHttpRequest();
       const url = app.link.urlCountry;
@@ -52,16 +64,17 @@ const render = {
     const pokemonList = document.querySelector(".pokemon-list");
     pokemonList.innerHTML = "";
 
-    search.forEach(element => {
+    const pokemon = search[0].results;
+    pokemon.forEach(element => {
       // creates a li
       const pokemonListItem = document.createElement("a");
       pokemonListItem.setAttribute("class", "pokemon-list-item");
-      pokemonListItem.setAttribute("href", "#" + element.toLowerCase());
+      pokemonListItem.setAttribute("href", "#" + element.name.toLowerCase());
       pokemonList.appendChild(pokemonListItem);
       // creates a href withing li
       const pokemonLink = document.createElement("li");
       pokemonListItem.appendChild(pokemonLink);
-      pokemonLink.appendChild(document.createTextNode(element));
+      pokemonLink.appendChild(document.createTextNode(element.name));
     });
   },
   detail: data => {
@@ -83,40 +96,26 @@ const render = {
     pokemonOverview.appendChild(pokemonStats);
 
     pokemonStats.innerHTML = `
-    <h3 class="pokemon-name">${data[0].name}</h3>
-    <img class="pokemon-image" src="${data[0].sprites.front_default}" alt=""/>
+    <h3 class="pokemon-name">${data.name}</h3>
+    <img class="pokemon-image" src="${data.sprites.front_default}" alt=""/>
     <ul>
-      <li class="pokemon-data">Height: <span>${data[0].height}</span></li>
-      <li class="pokemon-data">Weight: <span>${data[0].weight}</span></li>
+      <li class="pokemon-data">Height: <span>${data.height}</span></li>
+      <li class="pokemon-data">Weight: <span>${data.weight}</span></li>
       <li class="pokemon-data">Experience: <span>${
-        data[0].base_experience
+        data.base_experience
       }</span></li>
     </ul>
-    `;
-
-    // country part
-    const country = document.createElement("div");
-    country.setAttribute("class", "country-of-origin");
-    pokemonOverview.appendChild(country);
-
-    const randomCountry = Math.floor(Math.random() * 249 + 1);
-
-    country.innerHTML = `
-    <img class="pokemon-icon" src="./public/src/Pokemon-Location.png" alt="pokemon icon"/>
-    <h5>${data[1][randomCountry].name}</h5>
-    <img class="pokemon-icon" src="./public/src/Bookmark.png" alt="pokemon icon"/>
-    <h5>${data[1][randomCountry].capital}</h5>
-    <img class="pokemon-icon" src="./public/src/Coin.png" alt="pokemon icon"/>
-    <h5>${data[1][randomCountry].currencies[0].name}</h5>
     `;
   }
 };
 
 const router = {
   init: () => {
-    routie("/");
-    routie(":pokemon", data => {
+    routie("", data => {
       api.getData(data);
+    });
+    routie(":pokemon", data => {
+      api.detailPokemon(data);
     });
   },
   handle: () => {

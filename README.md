@@ -84,4 +84,3 @@ The second API this application uses, is the API of all the countries of the wor
 - [Pokemon Icons](https://roundicons.com/icon-packs/pokemon-go-filled-outline-icons/)
 - [Pokemon API](https://pokeapi.co/)
 - [Countries API](https://restcountries.eu/)
-- [Laurens for the big help]

@@ -1,7 +1,6 @@
 const app = {
   init: () => {
     console.log("Initializing");
-    router.handle();
     router.init();
   },
   link: {
@@ -76,9 +75,28 @@ const render = {
       pokemonListItem.appendChild(pokemonLink);
       pokemonLink.appendChild(document.createTextNode(element.name));
     });
+
+    router.handle(search[0].results);
+  },
+  search: data => {
+    const pokemonList = document.querySelector(".pokemon-list");
+    pokemonList.innerHTML = "";
+
+    data.forEach(element => {
+      // creates a li
+      const pokemonListItem = document.createElement("a");
+      pokemonListItem.setAttribute("class", "pokemon-list-item");
+      pokemonListItem.setAttribute("href", "#" + element);
+      pokemonList.appendChild(pokemonListItem);
+      // creates a href withing li
+      const pokemonLink = document.createElement("li");
+      pokemonListItem.appendChild(pokemonLink);
+      pokemonLink.appendChild(document.createTextNode(element));
+    });
   },
   detail: data => {
     // pokemon part
+    console.log(data);
     const pokemonOverview = document.querySelector(".pokemon-item");
 
     pokemonOverview.setAttribute("style", "transform: translateX(-100%)");
@@ -118,7 +136,7 @@ const router = {
       api.detailPokemon(data);
     });
   },
-  handle: () => {
+  handle: data => {
     const buttonPokemon = document.querySelector(".button-search");
     const inputPokemon = document.querySelector(".pokemon-search");
 
@@ -126,7 +144,6 @@ const router = {
 
     inputPokemon.addEventListener("input", inputField => {
       const value = inputPokemon.value;
-
       if (value) {
         feedbackPokeball.classList.add("pokeball-active");
       } else if (!value) {
@@ -137,12 +154,13 @@ const router = {
     buttonPokemon.addEventListener("click", showPokemonList => {
       const pokemonMatch = [];
 
-      pokemon.map(pokemon => {
+      data.forEach(data => {
+        const pokemon = data.name;
         if (pokemon.toUpperCase().includes(inputPokemon.value.toUpperCase())) {
           pokemonMatch.push(pokemon);
         }
       });
-      render.overview(pokemonMatch);
+      render.search(pokemonMatch);
     });
   }
 };

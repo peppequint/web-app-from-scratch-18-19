@@ -201,23 +201,6 @@ button:focus {
   width: 100%;
 }
 
-.pokedex .pokemon-item a {
-  align-items: center;
-  background-color: var(--light-blue);
-  border-top: 5px solid var(--dark-blue);
-  color: var(--dark-blue);
-  font-family: "System-ui", sans-serif;
-  font-size: 15px;
-  font-weight: 600;
-  display: flex;
-  height: 69px;
-  letter-spacing: 1px;
-  justify-content: center;
-  margin-top: auto;
-  order: 3;
-  text-transform: uppercase;
-}
-
 .pokedex .pokemon-item .pokemon-stats {
   display: flex;
   flex-direction: row;
@@ -293,6 +276,26 @@ button:focus {
 .pokedex .pokemon-item .pokemon-stats .pokemon-data span {
   font-weight: bold;
   margin-left: auto;
+}
+
+.pokedex .pokemon-item .pokemon-stats a {
+  align-items: center;
+  background-color: var(--light-blue);
+  border-top: 5px solid var(--dark-blue);
+  bottom: 0;
+  color: var(--dark-blue);
+  font-family: "System-ui", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  display: flex;
+  height: 69px;
+  letter-spacing: 1px;
+  justify-content: center;
+  margin-top: auto;
+  order: 3;
+  position: absolute;
+  text-transform: uppercase;
+  width: 100%;
 }
 
 @keyframes pokeball {

@@ -123,6 +123,7 @@ const render = {
         data.base_experience
       }</span></li>
     </ul>
+    <a class="pokemon-back" href="index.html">Go back</a>
     `;
   }
 };

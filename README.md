@@ -10,7 +10,7 @@
 ## Table Of Contents
 
 - [Get project](#get-project)
-- [API's](#api's)
+- [API](#api)
 - [Diagrams](#diagrams)
 - [Work to do](#work-to-do)
 - [Sources](#sources)
@@ -27,7 +27,7 @@ git clone https://github.com/peppequint/web-app-from-scratch-18-19.git
 cd web-app-from-scratch-18-19
 ```
 
-## API's
+## API
 
 ### Pokemon API
 
@@ -46,22 +46,6 @@ As I mentioned below, the data must be cleaned up better before it is used. That
 
 [Link to API](https://pokeapi.co/)
 
-### Countries API
-
-The second API this application uses, is the API of all the countries of the world. The requests to the API are totally random, based on `Math.floor(Math.random() * 249 + 1)`. The following data does this application use.
-
-```JSON
-{
-	"name": "Ethiopia",
-	"capital": "Addis Ababa",
-	"currencies": {
-		"name": "Ethiopian birr"
-	}
-}
-```
-
-[Link to API](https://restcountries.eu/)
-
 ## Diagrams
 
 ### Actor diagram
@@ -74,13 +58,12 @@ The second API this application uses, is the API of all the countries of the wor
 
 ## Work to do
 
-- [ ] Create modules
+- [x] Create modules
 - [ ] Better naming for parts of code
-- [ ] Improving search function
+- [x] Improving search function
 - [ ] Clean the code better before it is being used
 
 ## Sources
 
 - [Pokemon Icons](https://roundicons.com/icon-packs/pokemon-go-filled-outline-icons/)
 - [Pokemon API](https://pokeapi.co/)
-- [Countries API](https://restcountries.eu/)
